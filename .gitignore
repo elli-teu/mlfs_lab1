@@ -166,3 +166,4 @@ cython_debug/
 
 snurran.sh
 .DS_Store
+notebooks/ch03/.cache.sqlite
