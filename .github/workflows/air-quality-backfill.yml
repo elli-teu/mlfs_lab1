@@ -1,4 +1,4 @@
-name: air-quality-daily
+name: air-quality-backfill
 
 on:
   workflow_dispatch:

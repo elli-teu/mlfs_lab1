@@ -1,4 +1,4 @@
-name: air-quality-daily
+name: air-quality-train
 
 on:
   workflow_dispatch:
