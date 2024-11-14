@@ -295,11 +295,24 @@ def check_file_path(file_path):
     else:
         print(f"File successfully found at the path: {file_path}")
 
-def backfill_predictions_for_monitoring(weather_fg, air_quality_df, monitor_fg, model):
+def backfill_predictions_for_monitoring_old(weather_fg, air_quality_df, monitor_fg, model):
     features_df = weather_fg.read()
     features_df = features_df.sort_values(by=['date'], ascending=True)
     features_df = features_df.tail(10)
     features_df['predicted_pm25'] = model.predict(features_df[['temperature_2m_mean', 'precipitation_sum', 'wind_speed_10m_max', 'wind_direction_10m_dominant']])
+    df = pd.merge(features_df, air_quality_df[['date','pm25','street','country']], on="date")
+    df['days_before_forecast_day'] = 1
+    hindcast_df = df
+    df = df.drop('pm25', axis=1)
+    monitor_fg.insert(df, write_options={"wait_for_job": True})
+    return hindcast_df
+
+def backfill_predictions_for_monitoring(weather_fg, air_quality_df, monitor_fg, model):
+    features_df = weather_fg.read()
+    features_df = pd.merge(features_df, air_quality_df[['date','pm25','pm25_1','pm25_2','pm25_3']], on="date")
+    features_df = features_df.sort_values(by=['date'], ascending=True)
+    features_df = features_df.tail(10)
+    features_df['predicted_pm25'] = model.predict(features_df[["pm25_1","pm25_2","pm25_3",'temperature_2m_mean', 'precipitation_sum', 'wind_speed_10m_max', 'wind_direction_10m_dominant']])
     df = pd.merge(features_df, air_quality_df[['date','pm25','street','country']], on="date")
     df['days_before_forecast_day'] = 1
     hindcast_df = df
