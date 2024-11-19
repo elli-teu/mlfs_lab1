@@ -25,4 +25,4 @@ This notebook uses the recent data uploaded by the second notebook and the model
 This notebook is also expected to be run daily after the latest daily data has been uploaded by the second notebook.
 
 ## Dashboard
-The dashboard is available at [https://elli-teu.github.io/mlfs_lab1/air-quality/]([url](https://elli-teu.github.io/mlfs_lab1/air-quality/)) and shows both one week's worth of futue predictions as well as a hindcast useful for evaluating the model's dependability.
+The dashboard is available at [https://elli-teu.github.io/mlfs_lab1/air-quality/]([url](https://elli-teu.github.io/mlfs_lab1/air-quality/)) and shows both one week's worth of future predictions as well as a hindcast useful for evaluating the model's dependability.
