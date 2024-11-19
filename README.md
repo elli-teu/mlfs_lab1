@@ -17,7 +17,7 @@ This notebook downloads the last day's air quality information as well as a weat
 It is expected to run daily to keep the feature store up to date.
 
 ## 3_air_quality_training_pipeline.ipynb
-This notebook trains a XGBoost regression model for predicting future air quality. It uses the last three days of air quality as well as meterological data as training features. This model is then uploaded into the feature store.
+This notebook trains a XGBoost regression model for predicting future air quality. It uses the last three days of air quality as well as meteorological data (temperature, pecipitation, wind speed and dominant wind direction) as training features. This model is then uploaded into the feature store.
 This notebook can be run on demand. The model will take all the historical data into account the first time, so subsequent training is only meaningful once a significant amount of data has been added.
 
 ## 4_air_quality_batch_inference.ipynb
